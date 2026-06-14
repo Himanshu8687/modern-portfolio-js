@@ -1,4 +1,18 @@
 @import "tailwindcss";
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
 .counter {
   font-size: 16px;
   padding: 5px 10px;
