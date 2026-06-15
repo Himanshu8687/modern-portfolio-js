@@ -94,22 +94,7 @@ export const DeveloperPortfolio = () => {
 
   // लाइव लोकेशन ट्रैकर
   useEffect(() => {
-    fetch("https://ipapi.co/json/")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.city && data.country_code) {
-          setUserLocation(
-            `LOC: ${data.country_code}-${data.city.toUpperCase()}`,
-          );
-          setLogs((prev) => [
-            ...prev,
-            `[RESOLVED] Client inbound node detected at ${data.city}`,
-          ]);
-        } else {
-          setUserLocation("LOC: IN-UP-KANPUR");
-        }
-      })
-      .catch(() => setUserLocation("LOC: IN-UP-KANPUR"));
+    setUserLocation("LOC: IN-UP-KANPUR");
   }, []);
 
   // लाइव लॉग्स और नेटवर्क स्पीड फ्लक्चुएशन
@@ -222,7 +207,7 @@ export const DeveloperPortfolio = () => {
       </header>
 
       {/* WORKSPACE */}
-      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 overflow-x-hidden">
         <div className="grid gap-6 lg:grid-cols-3">
           {/* लेफ्ट साइडबार */}
           <div className="space-y-3">
@@ -247,7 +232,7 @@ export const DeveloperPortfolio = () => {
                     className={`h-2 w-2 rounded-full ${proj.status === "active" ? "bg-emerald-400" : "bg-amber-500"}`}
                   />
                 </div>
-                <div className="text-slate-500 mt-1">
+                <div className="text-slate-500 mt-1 break-all">
                   Branch: {proj.branch} // Region: {proj.region}
                 </div>
               </button>
@@ -255,13 +240,15 @@ export const DeveloperPortfolio = () => {
           </div>
 
           {/* राइट साइडबार */}
-          <div className="lg:col-span-2 rounded-xl border border-slate-900 bg-slate-950/60 backdrop-blur-md p-6 flex flex-col justify-between min-h-[340px]">
+          <div className="lg:col-span-2 rounded-xl border border-slate-900 bg-slate-950/60 backdrop-blur-md p-6 flex flex-col justify-between min-h-[340px] overflow-hidden">
             <div>
               <div className="flex items-center justify-between border-b border-slate-900 pb-3 font-mono text-xs">
                 <span className="text-blue-400 font-bold uppercase tracking-wider">
                   // SYSTEM DIAGNOSTICS CONTROL
                 </span>
-                <span className="text-slate-500">SIGNATURE: HD_ROOT</span>
+                <span className="text-slate-500 break-all">
+                  SIGNATURE: HD_ROOT
+                </span>
               </div>
 
               <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 font-mono text-xs">
@@ -280,6 +267,7 @@ export const DeveloperPortfolio = () => {
                 <div className="bg-[#020617] border border-slate-900 p-3 rounded-lg col-span-2 sm:col-span-1 flex flex-col justify-between">
                   <p className="text-slate-500">Node Status</p>
                   <button
+                    className="w-full max-w-full mt-1 text-xs font-bold rounded px-2 py-1 text-center border uppercase overflow-hidden break-words"
                     onClick={() =>
                       toggleProjectStatus(
                         selectedProject.id,
@@ -442,20 +430,23 @@ export const DeveloperPortfolio = () => {
               users: "12.4K",
               uptime: "99.98%",
               status: "ONLINE",
+              link: "https://portfoliohima8687.netlify.app/",
             },
             {
-              title: "Currency Converter",
+              title: "WEB TECH",
               tech: "JavaScript • API",
               users: "4.2K",
               uptime: "99.91%",
               status: "ONLINE",
+              link: "https://himanshu8687.github.io/web-tech-site/",
             },
             {
-              title: "Pharma Website",
+              title: "melodify-music-players",
               tech: "React • Marketing",
               users: "8.9K",
               uptime: "99.95%",
               status: "DEPLOYED",
+              link: "https://melodify-music-players.netlify.app",
             },
           ].map((project) => (
             <div
@@ -475,6 +466,14 @@ export const DeveloperPortfolio = () => {
         duration-300
         "
             >
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block px-4 py-2 bg-cyan-500 text-white rounded-lg hover:scale-105 transition-all"
+              >
+                🚀 Live Demo
+              </a>
               <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-cyan-500/10 blur-[100px]" />
 
               <div className="flex justify-between items-start">
