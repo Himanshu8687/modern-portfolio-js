@@ -92,12 +92,11 @@ export const DeveloperPortfolio = () => {
     optimisticProjects.find((p) => p.id === selectedProjectId) ||
     optimisticProjects[0];
 
-  // लाइव लोकेशन ट्रैकर
   useEffect(() => {
     setUserLocation("LOC: IN-UP-KANPUR");
   }, []);
 
-  // लाइव लॉग्स और नेटवर्क स्पीड फ्लक्चुएशन
+
   useEffect(() => {
     const logPool = [
       "Cache cluster hit ratio optimized at 98.4%",
@@ -117,17 +116,16 @@ export const DeveloperPortfolio = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // कनेक्ट/डिस्कनेक्ट के लिए ऑप्टिमिस्टिक UI म्यूटेशन फंक्शन
+
   const toggleProjectStatus = async (id, currentStatus) => {
     const nextStatus = currentStatus === "active" ? "paused" : "active";
 
-    // UI तुरंत बदल जाएगा (बिना सर्वर रिस्पॉन्स का वेट किए)
+  
     setOptimisticProjects({ id, nextStatus });
 
-    // नकली एपीआई डिले (2 सेकंड का ड्रामा)
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // बैकएंड स्टेट अपडेट
+ 
     setProjectsState((prev) =>
       prev.map((p) => (p.id === id ? { ...p, status: nextStatus } : p)),
     );
@@ -137,7 +135,6 @@ export const DeveloperPortfolio = () => {
     ]);
   };
 
-  // टर्मिनल रेट लिमिटर सबमिट हैंडलर
   const handleTerminalSubmit = (e) => {
     e.preventDefault();
     if (!message.trim()) return;
@@ -239,7 +236,7 @@ export const DeveloperPortfolio = () => {
             ))}
           </div>
 
-          {/* राइट साइडबार */}
+    
           <div className="lg:col-span-2 rounded-xl border border-slate-900 bg-slate-950/60 backdrop-blur-md p-6 flex flex-col justify-between min-h-[340px] overflow-hidden">
             <div>
               <div className="flex items-center justify-between border-b border-slate-900 pb-3 font-mono text-xs">
@@ -376,7 +373,6 @@ export const DeveloperPortfolio = () => {
         </div>
       </section>
 
-      {/* TECH MATRIX */}
       <section className="mx-auto max-w-7xl px-4 py-8 text-center sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-slate-200 sm:text-3xl">
           Architectural Superstructure
